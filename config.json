@@ -1,0 +1,11 @@
+{
+    "dest": "dist/installers/",
+    "icon": "build/icon.ico",
+    "categories": [
+      "Utility"
+    ],
+    "bin": "app",
+    "lintianOverrides": [
+      "changelog-file-missing-in-native-package"
+    ]
+  }

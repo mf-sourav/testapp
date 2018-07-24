@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</head>
+<body>
+   <h1>shopping list</h1> 
+   <ul>
+       
+   </ul>
+</body>
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    //add item
+    ipcRenderer.on('item:add',function(e,item){
+        const li =document.createElement('li');
+        const itemText = document.createTextNode(item);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+    });
+    //clear all item
+    ipcRenderer.on('item:clear',function(){
+        ul.innerHTML="";
+    });
+    //remove on double click
+    ul.addEventListener('dblclick',removeItem);
+    function removeItem(e){
+        e.target.remove();
+    }
+</script>
+</html>
